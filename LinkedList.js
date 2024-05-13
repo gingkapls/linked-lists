@@ -98,20 +98,48 @@ const LinkedList = class {
     }
     return false;
   };
-    
+
   find = (value) => {
     let temp = this.#head;
     let index = 0;
 
     while (temp != null) {
-        if (temp.value === value) return index;
-        temp = temp.next;
-        index += 1;
+      if (temp.value === value) return index;
+      temp = temp.next;
+      index += 1;
     }
-    
     return null;
+  };
 
-  }
+  // Extra credit
+  insertAt = (index, value) => {
+    // Out of bounds
+    if (index > this.#size) {
+      return null;
+    }
+
+    // Attach to head
+    if (index === 0) {
+      this.prepend(value);
+      return this;
+    }
+
+    // Negative indexing
+    if (index < 0) {
+      index = (this.#size + index) % this.#size;
+    }
+
+    let prev = this.#head;
+    for (let i = 1; i < index; ++i) {
+      prev = prev.next;
+    }
+
+    const curr = new Node({ value });
+    curr.next = prev.next;
+    prev.next = curr;
+
+    return this;
+  };
 };
 
 module.exports = LinkedList;
