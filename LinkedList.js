@@ -48,7 +48,7 @@ const LinkedList = class {
   get size() {
     return this.#size;
   }
-    
+
   get head() {
     return this.#head;
   }
@@ -56,10 +56,28 @@ const LinkedList = class {
   get tail() {
     let h = this.#head;
     while (h.next != null) {
-        h = h.next;
+      h = h.next;
     }
     return h;
   }
+
+  at = (index) => {
+    // Out of Bounds
+    if (index > this.#size) {
+      return null;
+    }
+
+    // Negative indexing
+    if (index < 0) {
+      index = (this.#size + index) % this.#size;
+    }
+
+    let h = this.#head;
+    for (let i = 0; i < index; ++i) {
+      h = h.next;
+    }
+    return h;
+  };
 };
 
 module.exports = LinkedList;
