@@ -86,8 +86,32 @@ const LinkedList = class {
     }
     let res = temp.next;
     temp.next = null;
+    this.#size -= 1;
     return res;
   };
+
+  contains = (value) => {
+    let temp = this.#head;
+    while (temp != null) {
+      if (temp.value === value) return true;
+      temp = temp.next;
+    }
+    return false;
+  };
+    
+  find = (value) => {
+    let temp = this.#head;
+    let index = 0;
+
+    while (temp != null) {
+        if (temp.value === value) return index;
+        temp = temp.next;
+        index += 1;
+    }
+    
+    return null;
+
+  }
 };
 
 module.exports = LinkedList;
