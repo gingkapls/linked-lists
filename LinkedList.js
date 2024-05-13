@@ -78,8 +78,16 @@ const LinkedList = class {
     }
     return temp;
   };
-    
 
+  pop = () => {
+    let temp = this.#head;
+    while (temp.next?.next != null) {
+      temp = temp.next;
+    }
+    let res = temp.next;
+    temp.next = null;
+    return res;
+  };
 };
 
 module.exports = LinkedList;
