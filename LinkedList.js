@@ -35,7 +35,7 @@ const LinkedList = class {
     return this;
   };
 
-  print = () => {
+  toString = () => {
     let temp = this.#head;
     let str = "";
     while (temp != null) {
