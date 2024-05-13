@@ -10,7 +10,7 @@ const LinkedList = class {
   }
 
   #validateIndex = (index) =>
-    index > this.#size
+    index >= this.#size
       ? null
       : index < 0
         ? Math.abs((this.#size + index) % this.#size)
@@ -134,7 +134,27 @@ const LinkedList = class {
     return this;
   };
 
-  removeAt = (index) => {};
+  removeAt = (index) => {
+    index = this.#validateIndex(index);
+    if (index === null) return null;
+      
+    // remove Head
+    if (index === 0) {
+        const res = this.#head;
+        this.#head = this.#head.next;
+        return res;
+    }
+
+    let prev = this.#head;
+
+    for (let i = 1; i < index; ++i) {
+      prev = prev.next;
+    }
+    const res = prev.next;
+    prev.next = prev.next.next;
+    
+    return {res,prev};
+  };
 };
 
 module.exports = LinkedList;
