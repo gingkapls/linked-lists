@@ -9,6 +9,9 @@ const LinkedList = class {
     this.#size = 0;
   }
 
+  #handleNegativeIndex = (index) =>
+    index < 0 ? Math.abs((this.#size + index) % this.#size) : index;
+
   append = (value) => {
     // List has no nodes
     if (this.#head === null) {
@@ -68,9 +71,7 @@ const LinkedList = class {
     }
 
     // Negative indexing
-    if (index < 0) {
-      index = (this.#size + index) % this.#size;
-    }
+    index = this.#handleNegativeIndex(index);
 
     let temp = this.#head;
     for (let i = 0; i < index; ++i) {
@@ -125,9 +126,7 @@ const LinkedList = class {
     }
 
     // Negative indexing
-    if (index < 0) {
-      index = (this.#size + index) % this.#size;
-    }
+    index = this.#handleNegativeIndex(index);
 
     let prev = this.#head;
     for (let i = 1; i < index; ++i) {
@@ -140,6 +139,8 @@ const LinkedList = class {
 
     return this;
   };
+
+//   removeAt = (index) => {};
 };
 
 module.exports = LinkedList;
