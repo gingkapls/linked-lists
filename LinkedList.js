@@ -17,11 +17,11 @@ const LinkedList = class {
       return this;
     }
 
-    let h = this.#head;
-    while (h?.next != null) {
-      h = h.next;
+    let temp = this.#head;
+    while (temp.next != null) {
+      temp = temp.next;
     }
-    h.next = new Node({ value });
+    temp.next = new Node({ value });
 
     this.#size += 1;
     return this;
@@ -36,11 +36,11 @@ const LinkedList = class {
   };
 
   print = () => {
-    let h = this.#head;
+    let temp = this.#head;
     let str = "";
-    while (h != null) {
-      str += `( ${h.value} ) -> `;
-      h = h.next;
+    while (temp != null) {
+      str += `( ${temp.value} ) -> `;
+      temp = temp.next;
     }
     return `${str}null`;
   };
@@ -54,11 +54,11 @@ const LinkedList = class {
   }
 
   get tail() {
-    let h = this.#head;
-    while (h.next != null) {
-      h = h.next;
+    let temp = this.#head;
+    while (temp.next != null) {
+      temp = temp.next;
     }
-    return h;
+    return temp;
   }
 
   at = (index) => {
@@ -72,12 +72,14 @@ const LinkedList = class {
       index = (this.#size + index) % this.#size;
     }
 
-    let h = this.#head;
+    let temp = this.#head;
     for (let i = 0; i < index; ++i) {
-      h = h.next;
+      temp = temp.next;
     }
-    return h;
+    return temp;
   };
+    
+
 };
 
 module.exports = LinkedList;
