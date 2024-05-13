@@ -9,8 +9,12 @@ const LinkedList = class {
     this.#size = 0;
   }
 
-  #handleNegativeIndex = (index) =>
-    index < 0 ? Math.abs((this.#size + index) % this.#size) : index;
+  #validateIndex = (index) =>
+    index > this.#size
+      ? null
+      : index < 0
+        ? Math.abs((this.#size + index) % this.#size)
+        : index;
 
   append = (value) => {
     // List has no nodes
@@ -65,13 +69,8 @@ const LinkedList = class {
   }
 
   at = (index) => {
-    // Out of Bounds
-    if (index > this.#size) {
-      return null;
-    }
-
-    // Negative indexing
-    index = this.#handleNegativeIndex(index);
+    index = this.#validateIndex(index);
+    if (index === null) return null;
 
     let temp = this.#head;
     for (let i = 0; i < index; ++i) {
@@ -114,19 +113,14 @@ const LinkedList = class {
 
   // Extra credit
   insertAt = (index, value) => {
-    // Out of bounds
-    if (index > this.#size) {
-      return null;
-    }
+    index = this.#validateIndex(index);
+    if (index === null) return;
 
     // Attach to head
     if (index === 0) {
       this.prepend(value);
       return this;
     }
-
-    // Negative indexing
-    index = this.#handleNegativeIndex(index);
 
     let prev = this.#head;
     for (let i = 1; i < index; ++i) {
@@ -140,7 +134,7 @@ const LinkedList = class {
     return this;
   };
 
-//   removeAt = (index) => {};
+  removeAt = (index) => {};
 };
 
 module.exports = LinkedList;
