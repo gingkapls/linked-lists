@@ -77,29 +77,6 @@ const LinkedList = class {
     return temp;
   };
 
-  /*   pop = () => {
-    // no elements in the list
-    if (this.#size === 0) return null;
-
-    // head is the only element
-    if (this.#size === 1) {
-      let res = this.#head;
-      this.#head = null;
-      this.#size = 0;
-      return res;
-    }
-
-    let temp = this.#head;
-    while (temp.next?.next != null) {
-      temp = temp.next;
-      this.#size -= 1;
-    }
-    let res = temp.next;
-    temp.next = null;
-    return res;
-  };
- */
-
   pop = () => {
     return this.#size === 0 ? this.removeAt(0) : this.removeAt(this.#size - 1);
   };
