@@ -166,6 +166,20 @@ describe("LinkedList", () => {
         .toString()
     ).toEqual("( 0 ) -> ( 1 ) -> ( 10 ) -> ( 2 ) -> ( 3 ) -> ( 4 ) -> null");
   });
-    
-    
+
+  test("remove nothing from empty list", () => {
+    expect(new LinkedList().removeAt(0)).toEqual(null);
+  });
+
+  test("remove element from a single element list", () => {
+    expect(new LinkedList().append(0).removeAt(0)).toEqual(
+      new Node({ value: 0 })
+    );
+  });
+
+  test("remove arbitrary element from a non-empty list", () => {
+    expect(new LinkedList().append(0).append(1).append(2).append(3).removeAt(2)).toEqual(
+      new Node({ value: 2 })
+    );
+  });
 });

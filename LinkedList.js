@@ -4,9 +4,12 @@ const LinkedList = class {
   #head;
   #size;
 
-  constructor() {
+  constructor(...values) {
     this.#head = null;
-    this.#size = 0;
+    this.#size = values.length;
+    for (const value in values) {
+      this.append(value);
+    }
   }
 
   #validateIndex = (index) =>
@@ -104,6 +107,12 @@ const LinkedList = class {
 
   // Extra credit
   insertAt = (index, value) => {
+    // insert at head
+    if (index === 0) {
+      this.prepend(value);
+      return this;
+    }
+    
     index = this.#validateIndex(index);
     if (index === null) return;
 
@@ -118,8 +127,7 @@ const LinkedList = class {
       prev = prev.next;
     }
 
-    const curr = new Node({ value });
-    curr.next = prev.next;
+    const curr = new Node({ value, next: prev.next });
     prev.next = curr;
 
     return this;
@@ -143,6 +151,7 @@ const LinkedList = class {
       prev = prev.next;
     }
     const res = prev.next;
+    res.next = null;
     prev.next = prev.next.next;
     this.#size -= 1;
 
