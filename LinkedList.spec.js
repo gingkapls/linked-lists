@@ -97,6 +97,22 @@ describe("LinkedList", () => {
   });
 
   test("gets element at negative index", () => {
-    expect(new LinkedList().append(0).append(1).at(-1)).toEqual(new Node({value: 1}));
+    expect(new LinkedList().append(0).append(1).at(-1)).toEqual(
+      new Node({ value: 1 })
+    );
+  });
+
+  test("pops nothing off empty list", () => {
+    expect(new LinkedList().pop()).toEqual(null);
+  });
+
+  test("pops element off a list with one element", () => {
+    expect(new LinkedList().append(0).pop()).toEqual(new Node({ value: 0 }));
+  });
+
+  test("pops element off a list with multiple elements", () => {
+    expect(new LinkedList().append(0).append(1).pop()).toEqual(
+      new Node({ value: 1 })
+    );
   });
 });
