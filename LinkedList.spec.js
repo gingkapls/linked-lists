@@ -115,4 +115,20 @@ describe("LinkedList", () => {
       new Node({ value: 1 })
     );
   });
+
+  test("contains with empty list returns false", () => {
+    expect(new LinkedList().contains(0)).toEqual(false);
+  });
+
+  test("contains returns true if element is present", () => {
+    expect(new LinkedList().append(0).append(1).append(2).contains(1)).toEqual(
+      true
+    );
+  });
+
+  test("contains returns false if element is not present", () => {
+    expect(new LinkedList().append(0).append(1).append(2).contains(5)).toEqual(
+      false
+    );
+  });
 });
