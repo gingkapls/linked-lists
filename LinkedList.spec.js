@@ -82,11 +82,11 @@ describe("LinkedList", () => {
     );
   });
 
-  test("returns null at index of an empty list", () => {
+  test("at() returns null in empty list", () => {
     expect(new LinkedList().at(0)).toEqual(null);
   });
 
-  test("returns null at out of bounds index", () => {
+  test("returns last element at out of bounds index", () => {
     expect(new LinkedList().append(0).append(1).at(5)).toEqual(null);
   });
 
@@ -144,4 +144,28 @@ describe("LinkedList", () => {
     expect(new LinkedList().append(0).append(1).append(2).find(2)).toEqual(2);
   });
 
+  test("insert element at 0 index in list", () => {
+    expect(new LinkedList().append(0).insertAt(0, 1).toString()).toEqual(
+      "( 1 ) -> ( 0 ) -> null"
+    );
+  });
+
+  test("insert element at 0 index in an empty list", () => {
+    expect(new LinkedList().insertAt(0, 1).toString()).toEqual("( 1 ) -> null");
+  });
+
+  test("insert element at arbitrary index in a list", () => {
+    expect(
+      new LinkedList()
+        .append(0)
+        .append(1)
+        .append(2)
+        .append(3)
+        .append(4)
+        .insertAt(2, 10)
+        .toString()
+    ).toEqual("( 0 ) -> ( 1 ) -> ( 10 ) -> ( 2 ) -> ( 3 ) -> ( 4 ) -> null");
+  });
+    
+    
 });
