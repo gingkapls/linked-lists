@@ -80,13 +80,24 @@ const LinkedList = class {
   };
 
   pop = () => {
+    // no elements in the list
+    if (this.#size === 0) return null;
+
+    // head is the only element
+    if (this.#size === 1) {
+      let res = this.#head;
+      this.#head = null;
+      this.#size = 0;
+      return res;
+    }
+
     let temp = this.#head;
     while (temp.next?.next != null) {
       temp = temp.next;
+      this.#size -= 1;
     }
     let res = temp.next;
     temp.next = null;
-    this.#size -= 1;
     return res;
   };
 
@@ -137,12 +148,13 @@ const LinkedList = class {
   removeAt = (index) => {
     index = this.#validateIndex(index);
     if (index === null) return null;
-      
+
     // remove Head
     if (index === 0) {
-        const res = this.#head;
-        this.#head = this.#head.next;
-        return res;
+      const res = this.#head;
+      this.#head = this.#head.next;
+      this.size -= 1;
+      return res;
     }
 
     let prev = this.#head;
@@ -152,8 +164,8 @@ const LinkedList = class {
     }
     const res = prev.next;
     prev.next = prev.next.next;
-    
-    return {res,prev};
+
+    return res;
   };
 };
 
