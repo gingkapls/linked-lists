@@ -1,4 +1,5 @@
 const LinkedList = require("./LinkedList");
+const Node = require("./Node");
 
 describe("LinkedList", () => {
   test("prints empty list", () => {
@@ -29,23 +30,37 @@ describe("LinkedList", () => {
     expect(new LinkedList().prepend(5).toString()).toEqual("( 5 ) -> null");
   });
 
-  test("calculates size of empty list correctly", () => {
+  test("calculates size of empty list", () => {
     expect(new LinkedList().size).toEqual(0);
   });
 
-  test("calculates size correctly with single appended value", () => {
+  test("calculates size with single appended value", () => {
     expect(new LinkedList().append(0).size).toEqual(1);
   });
 
-  test("calculates size correctly with multiple append values", () => {
-    expect(new LinkedList().append(0).append(1).append(2).append(3).size).toEqual(4);
+  test("calculates size with multiple append values", () => {
+    expect(
+      new LinkedList().append(0).append(1).append(2).append(3).size
+    ).toEqual(4);
   });
-    
-  test("calculates size correctly with a single prepended value", () => {
+
+  test("calculates size with a single prepended value", () => {
     expect(new LinkedList().prepend(0).size).toEqual(1);
   });
 
-  test("calculates size correctly with multiple append value", () => {
-    expect(new LinkedList().prepend(0).prepend(1).prepend(2).prepend(3).size).toEqual(4);
+  test("calculates size with multiple append value", () => {
+    expect(
+      new LinkedList().prepend(0).prepend(1).prepend(2).prepend(3).size
+    ).toEqual(4);
   });
+
+  test("gets head of empty list", () => {
+    expect(new LinkedList().head).toEqual(null);
+  });
+
+  test("gets head of a list with one node", () => {
+    expect(new LinkedList().append(0).head).toEqual(new Node({ value: 0 }));
+  });
+
+
 });
