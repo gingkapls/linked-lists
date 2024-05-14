@@ -6,6 +6,12 @@ describe("LinkedList", () => {
     expect(new LinkedList().toString()).toEqual("null");
   });
 
+  test("constructs list with arbitrary elements", () => {
+    expect(new LinkedList(0, 1, 2).toString()).toEqual(
+      "( 0 ) -> ( 1 ) -> ( 2 ) -> null"
+    );
+  });
+
   test("appends a single value", () => {
     expect(new LinkedList().append(0).toString()).toEqual("( 0 ) -> null");
   });
@@ -34,6 +40,10 @@ describe("LinkedList", () => {
     expect(new LinkedList().size).toEqual(0);
   });
 
+  test("calculates size of non-zero constructed list ", () => {
+    expect(new LinkedList(0, 1, 2).size).toEqual(3);
+  });
+
   test("calculates size with single appended value", () => {
     expect(new LinkedList().append(0).size).toEqual(1);
   });
@@ -48,16 +58,20 @@ describe("LinkedList", () => {
     expect(new LinkedList().prepend(0).size).toEqual(1);
   });
 
+  test("calculates size with a multiple prepended value", () => {
+    expect(new LinkedList().prepend(0).prepend(1).prepend(2).size).toEqual(3);
+  });
+
   test("gets head of empty list", () => {
     expect(new LinkedList().head).toEqual(null);
   });
 
   test("gets head of a list with one node", () => {
-    expect(new LinkedList().append(0).head).toEqual(new Node({ value: 0 }));
+    expect(new LinkedList(0).head).toEqual(new Node({ value: 0 }));
   });
 
   test("gets head of a list with multiple nodes", () => {
-    expect(new LinkedList().append(0).append(1).head).toEqual(
+    expect(new LinkedList(0, 1).head).toEqual(
       new Node({ value: 0, next: new Node({ value: 1 }) })
     );
   });
@@ -67,13 +81,11 @@ describe("LinkedList", () => {
   });
 
   test("gets tail of a list with one node", () => {
-    expect(new LinkedList().append(0).tail).toEqual(new Node({ value: 0 }));
+    expect(new LinkedList(0).tail).toEqual(new Node({ value: 0 }));
   });
 
   test("gets tail of a list with multiple nodes", () => {
-    expect(new LinkedList().append(0).append(1).tail).toEqual(
-      new Node({ value: 1 })
-    );
+    expect(new LinkedList(0, 1).tail).toEqual(new Node({ value: 1 }));
   });
 
   test("at() returns null in empty list", () => {
@@ -81,19 +93,15 @@ describe("LinkedList", () => {
   });
 
   test("returns last element at out of bounds index", () => {
-    expect(new LinkedList().append(0).append(1).at(5)).toEqual(null);
+    expect(new LinkedList(0, 1).at(5)).toEqual(null);
   });
 
   test("gets element at positive index", () => {
-    expect(new LinkedList().append(0).append(1).at(1)).toEqual(
-      new Node({ value: 1 })
-    );
+    expect(new LinkedList(0, 1).at(1)).toEqual(new Node({ value: 1 }));
   });
 
   test("gets element at negative index", () => {
-    expect(new LinkedList().append(0).append(1).at(-1)).toEqual(
-      new Node({ value: 1 })
-    );
+    expect(new LinkedList(0, 1).at(-1)).toEqual(new Node({ value: 1 }));
   });
 
   test("pops nothing off empty list", () => {
@@ -101,13 +109,11 @@ describe("LinkedList", () => {
   });
 
   test("pops element off a list with one element", () => {
-    expect(new LinkedList().append(0).pop()).toEqual(new Node({ value: 0 }));
+    expect(new LinkedList(0).pop()).toEqual(new Node({ value: 0 }));
   });
 
   test("pops element off a list with multiple elements", () => {
-    expect(new LinkedList().append(0).append(1).pop()).toEqual(
-      new Node({ value: 1 })
-    );
+    expect(new LinkedList(0, 1).pop()).toEqual(new Node({ value: 1 }));
   });
 
   test("contains with empty list returns false", () => {
@@ -115,15 +121,11 @@ describe("LinkedList", () => {
   });
 
   test("contains returns true if element is present", () => {
-    expect(new LinkedList().append(0).append(1).append(2).contains(1)).toEqual(
-      true
-    );
+    expect(new LinkedList(0, 1, 2).contains(1)).toEqual(true);
   });
 
   test("contains returns false if element is not present", () => {
-    expect(new LinkedList().append(0).append(1).append(2).contains(5)).toEqual(
-      false
-    );
+    expect(new LinkedList(0, 1, 2).contains(5)).toEqual(false);
   });
 
   test("find in empty list", () => {
@@ -131,15 +133,15 @@ describe("LinkedList", () => {
   });
 
   test("find in a list with one element ", () => {
-    expect(new LinkedList().append(0).find(0)).toEqual(0);
+    expect(new LinkedList(0).find(0)).toEqual(0);
   });
 
   test("find in a list with multiple elements", () => {
-    expect(new LinkedList().append(0).append(1).append(2).find(2)).toEqual(2);
+    expect(new LinkedList(0, 1, 2).find(2)).toEqual(2);
   });
 
   test("insert element at 0 index in list", () => {
-    expect(new LinkedList().append(0).insertAt(0, 1).toString()).toEqual(
+    expect(new LinkedList(0).insertAt(0, 1).toString()).toEqual(
       "( 1 ) -> ( 0 ) -> null"
     );
   });
@@ -149,16 +151,9 @@ describe("LinkedList", () => {
   });
 
   test("insert element at arbitrary index in a list", () => {
-    expect(
-      new LinkedList()
-        .append(0)
-        .append(1)
-        .append(2)
-        .append(3)
-        .append(4)
-        .insertAt(2, 10)
-        .toString()
-    ).toEqual("( 0 ) -> ( 1 ) -> ( 10 ) -> ( 2 ) -> ( 3 ) -> ( 4 ) -> null");
+    expect(new LinkedList(0, 1, 2, 3, 4).insertAt(2, 10).toString()).toEqual(
+      "( 0 ) -> ( 1 ) -> ( 10 ) -> ( 2 ) -> ( 3 ) -> ( 4 ) -> null"
+    );
   });
 
   test("remove nothing from empty list", () => {
@@ -166,13 +161,11 @@ describe("LinkedList", () => {
   });
 
   test("remove element from a single element list", () => {
-    expect(new LinkedList().append(0).removeAt(0)).toEqual(
-      new Node({ value: 0 })
-    );
+    expect(new LinkedList(0).removeAt(0)).toEqual(new Node({ value: 0 }));
   });
 
   test("remove arbitrary element from a non-empty list", () => {
-    expect(new LinkedList().append(0).append(1).append(2).append(3).removeAt(2)).toEqual(
+    expect(new LinkedList(0, 1, 2, 3).removeAt(2)).toEqual(
       new Node({ value: 2 })
     );
   });
