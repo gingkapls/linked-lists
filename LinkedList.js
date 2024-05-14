@@ -77,7 +77,7 @@ const LinkedList = class {
     return temp;
   };
 
-  pop = () => {
+  /*   pop = () => {
     // no elements in the list
     if (this.#size === 0) return null;
 
@@ -97,6 +97,11 @@ const LinkedList = class {
     let res = temp.next;
     temp.next = null;
     return res;
+  };
+ */
+
+  pop = () => {
+    return this.#size === 0 ? this.removeAt(0) : this.removeAt(this.#size - 1);
   };
 
   contains = (value) => {
