@@ -62,5 +62,17 @@ describe("LinkedList", () => {
     expect(new LinkedList().append(0).head).toEqual(new Node({ value: 0 }));
   });
 
+  test("gets head of a list with multiple nodes", () => {
+    expect(new LinkedList().append(0).append(1).head).toEqual(
+      new Node({ value: 0, next: new Node({ value: 1 }) })
+    );
+  });
 
+  test("gets tail of an empty list", () => {
+    expect(new LinkedList().tail).toEqual(null);
+  });
+
+  test("gets tail of a list with one node", () => {
+    expect(new LinkedList().append(0).tail).toEqual(new Node({ value: 0 }));
+  });
 });
