@@ -6,8 +6,8 @@ const LinkedList = class {
 
   constructor(...values) {
     this.#head = null;
-    this.#size = values.length;
-    for (const value in values) {
+    this.#size = 0;
+    for (const value of values) {
       this.append(value);
     }
   }
