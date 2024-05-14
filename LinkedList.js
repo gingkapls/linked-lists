@@ -95,12 +95,9 @@ const LinkedList = class {
 
   find = (value) => {
     let temp = this.#head;
-    let index = 0;
-
-    while (temp != null) {
-      if (temp.value === value) return index;
+    for (let i = 0; temp != null; ++i) {
+      if (temp.value === value) return i;
       temp = temp.next;
-      index += 1;
     }
     return null;
   };
@@ -112,7 +109,7 @@ const LinkedList = class {
       this.prepend(value);
       return this;
     }
-    
+
     index = this.#validateIndex(index);
     if (index === null) return;
 
