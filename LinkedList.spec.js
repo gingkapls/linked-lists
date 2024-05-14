@@ -77,6 +77,26 @@ describe("LinkedList", () => {
   });
 
   test("gets tail of a list with multiple nodes", () => {
-    expect(new LinkedList().append(0).append(1).tail).toEqual(new Node({ value: 1 }));
+    expect(new LinkedList().append(0).append(1).tail).toEqual(
+      new Node({ value: 1 })
+    );
+  });
+
+  test("returns null at index of an empty list", () => {
+    expect(new LinkedList().at(0)).toEqual(null);
+  });
+
+  test("returns null at out of bounds index", () => {
+    expect(new LinkedList().append(0).append(1).at(5)).toEqual(null);
+  });
+
+  test("gets element at positive index", () => {
+    expect(new LinkedList().append(0).append(1).at(1)).toEqual(
+      new Node({ value: 1 })
+    );
+  });
+
+  test("gets element at negative index", () => {
+    expect(new LinkedList().append(0).append(1).at(-1)).toEqual(new Node({value: 1}));
   });
 });
