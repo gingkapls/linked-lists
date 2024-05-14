@@ -75,4 +75,8 @@ describe("LinkedList", () => {
   test("gets tail of a list with one node", () => {
     expect(new LinkedList().append(0).tail).toEqual(new Node({ value: 0 }));
   });
+
+  test("gets tail of a list with multiple nodes", () => {
+    expect(new LinkedList().append(0).append(1).tail).toEqual(new Node({ value: 1 }));
+  });
 });
