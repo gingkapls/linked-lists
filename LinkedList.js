@@ -60,8 +60,8 @@ const LinkedList = class {
 
   get tail() {
     let temp = this.#head;
-    while (temp.next != null) {
-      temp = temp.next;
+    while (temp?.next != null) {
+      temp = temp?.next;
     }
     return temp;
   }
