@@ -131,4 +131,17 @@ describe("LinkedList", () => {
       false
     );
   });
+
+  test("find in empty list", () => {
+    expect(new LinkedList().find(5)).toEqual(null);
+  });
+
+  test("find in a list with one element ", () => {
+    expect(new LinkedList().append(0).find(0)).toEqual(0);
+  });
+
+  test("find in a list with multiple elements", () => {
+    expect(new LinkedList().append(0).append(1).append(2).find(2)).toEqual(2);
+  });
+
 });
