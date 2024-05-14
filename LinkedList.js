@@ -156,7 +156,7 @@ const LinkedList = class {
     if (index === 0) {
       const res = this.#head;
       this.#head = this.#head.next;
-      this.size -= 1;
+      this.#size -= 1;
       return res;
     }
 
@@ -167,6 +167,7 @@ const LinkedList = class {
     }
     const res = prev.next;
     prev.next = prev.next.next;
+    this.#size -= 1;
 
     return res;
   };
