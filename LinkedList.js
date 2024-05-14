@@ -35,9 +35,7 @@ const LinkedList = class {
   };
 
   prepend = (value) => {
-    const next = this.#head;
-    this.#head = new Node({ value });
-    this.#head.next = next;
+    this.#head = new Node({ value, next: this.#head });
     this.#size += 1;
     return this;
   };
