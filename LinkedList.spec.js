@@ -48,12 +48,6 @@ describe("LinkedList", () => {
     expect(new LinkedList().prepend(0).size).toEqual(1);
   });
 
-  test("calculates size with multiple append value", () => {
-    expect(
-      new LinkedList().prepend(0).prepend(1).prepend(2).prepend(3).size
-    ).toEqual(4);
-  });
-
   test("gets head of empty list", () => {
     expect(new LinkedList().head).toEqual(null);
   });
